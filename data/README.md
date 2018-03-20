@@ -1,5 +1,5 @@
-This is the directory that contains all of the scans from the indent profiler,
-raw or otherwise.
+This is the directory that contains all of the data required by the processing
+algorithms.
 
-Both wire scans and calibration scans are stored here along with applicable
-console logs and preliminary processing data. 
+It holds the raw scans of the wire specimens and precision measurement cylinders
+as well as the calibration data that defines system misalignment.
