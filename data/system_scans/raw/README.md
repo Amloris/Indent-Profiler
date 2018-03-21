@@ -4,6 +4,7 @@ conventions, and data stuctures of the raw files.
 
 Section 1: Directory Structure and File Naming
 ----------------------------------------------
+
 '''bash 
 .
 └── raw
@@ -29,6 +30,7 @@ Section 1: Directory Structure and File Naming
             └── Scan_3
                 ├── WireID_1.csv
                 └── WireID_2.csv
+
 '''
 
 /raw
