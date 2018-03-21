@@ -4,15 +4,14 @@ conventions, and data stuctures of the raw files.
 
 Section 1: Directory Structure and File Naming
 ----------------------------------------------
-/raw
-
+. 
+ /raw
    /scans_calibration
       /date_cal_1
           Cal_1.csv
           Cal_2.csv
       /date_cal_2  
-          Cal_3.csv
-          
+          Cal_3.csv     
    /scans_wire
       /date_scan_1
          /Scan_1
