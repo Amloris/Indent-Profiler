@@ -3,31 +3,30 @@ The sections below summarize the layout of the directory, file naming
 conventions, and data stuctures of the raw files.
 
 Section 1: Directory Structure and File Naming
-----------------------------------------------
-. 
- /raw
-   /scans_calibration
-      /date_cal_1
-          Cal_1.csv
-          Cal_2.csv
-      /date_cal_2  
-          Cal_3.csv     
-   /scans_wire
-      /date_scan_1
-         /Scan_1
-            WireID_1.csv
-            WireID_2.csv
-            WireID_3.csv
-            WireID_4.csv
-         /Scan_2
-            WireID_1.csv
-            WireID_2.csv
-            WireID_3.csv
-            WireID_4.csv
-      /date_scan_2
-         /Scan_3
-            WireID_1.csv
-            WireID_2.csv
+---------------------------------------------- 
+/raw
+    /scans_calibration
+        /date_cal_1
+            Cal_1.csv
+            Cal_2.csv
+        /date_cal_2  
+            Cal_3.csv     
+    /scans_wire
+        /date_scan_1
+            /Scan_1
+                WireID_1.csv
+                WireID_2.csv
+                WireID_3.csv
+                WireID_4.csv
+            /Scan_2
+                WireID_1.csv
+                WireID_2.csv
+                WireID_3.csv
+                WireID_4.csv
+        /date_scan_2
+            /Scan_3
+                WireID_1.csv
+                WireID_2.csv
 
 Notes
 
