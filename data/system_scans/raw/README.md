@@ -4,7 +4,7 @@ conventions, and data stuctures of the raw files.
 
 Section 1: Directory Structure and File Naming
 ---------------------------------------------- 
-'''
+'''bash
 /raw
     /scans_calibration
         /date_cal_1
