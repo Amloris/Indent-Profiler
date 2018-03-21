@@ -31,6 +31,7 @@ Section 1: Directory Structure and File Naming
             WireID_2.csv
 
 Notes
+
     Directory Info:
       1.) /raw, /scans_calibration, and /scans_wire  are all static directories
       2.) /date_cal_# and /date_scan_# use the following naming syntax
