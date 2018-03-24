@@ -17,6 +17,8 @@ def LoadData(fname):
            scan_info = The header info of the data file, stored as a struct.
     '''
 
+    cols_expected = 800       #Number of axial data points for the scanner
+
     #Set Extension
     filename, file_ext = os.path.splitext(fname)
     if (file_ext == '.txt'):
@@ -54,7 +56,17 @@ def LoadData(fname):
     #Load Data
     data = np.loadtxt(fname, delimiter=delim, skiprows=header_length)
 
-    return data, scan_info
+	#Check Data Validity
+    if (np.shape(data)[0]!=scan_info.pts_per_rev) or (np.shape(data)[1]!=800):
+        if np.shape(data)[0]!=scan_info.pts_per_rev:
+            print "ERROR: Expected %i rows, got %i rows" \
+                  %(scan_info.pts_per_rev, np.shape(data)[0])
+        else:
+            print "ERROR: Expected %i cols, got %i cols" \
+                  %(cols_expected, np.shape(data)[1])
+        return 0
+    else:
+        return data, scan_info
 
 
 class ScanInfo():
