@@ -129,4 +129,5 @@ def Bounds(array, axis='row', index=0, get_avg=False):
         avg_val = np.average(array[:,index])
         return (min_val,max_val,avg_val)
 
-
+if __name__ == "__main__":
+    import os
