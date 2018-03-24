@@ -1,6 +1,8 @@
 #------------------------------------------------------------------------------
 #Utility for commonly used functions
 #------------------------------------------------------------------------------
+import os
+import numpy as np
 
 '''File I/O'''
 '''-------------------------------------------------------------------------'''
@@ -46,7 +48,7 @@ def LoadData(fname):
                 if i == 5:
                     time_stamp       = str(line_val)
 
-    scan_info = ScanInfo(wire_profile, x_location, total_sample_len /
+    scan_info = ScanInfo(wire_profile, x_location, total_sample_len, \
                          pts_per_rev, data_state, time_stamp)
 
     #Load Data
