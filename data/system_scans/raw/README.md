@@ -45,7 +45,7 @@ Notes
       1.) Calibration files are single segment scans. Thus, no subdirectories
           are needed.
       2.) Each calibration file should be given an appropriate name identifier
-          with a .csv extension. The file desciptor in the header should
+          with a .csv extension. The file descriptor in the header should
           indicate which precision cylinder blank was used.
 
     File Naming (Wires):
