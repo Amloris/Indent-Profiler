@@ -42,10 +42,10 @@ def LoadData(fname):
                     total_sample_len = float(line_val)
                 if i == 3:
                     pts_per_rev      = int(line_val)
-				if i == 4:
-					data_state       = str(line_val)
-				if i == 5:
-					time_stamp       = str(line_val)
+                if i == 4:
+                    data_state       = str(line_val)
+                if i == 5:
+                    time_stamp       = str(line_val)
 
     scan_info = ScanInfo(wire_profile, x_location, total_sample_len /
                          pts_per_rev, data_state, time_stamp)
@@ -63,8 +63,8 @@ class ScanInfo():
         self.x_location = x_location
         self.total_sample_length = total_sample_length
         self.pts_per_rev = pts_per_rev
-		self.data_state = data_state
-		self.time_stamp = time_stamp
+        self.data_state = data_state
+        self.time_stamp = time_stamp
 
 
 
