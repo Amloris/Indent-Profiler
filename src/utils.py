@@ -30,20 +30,10 @@ def LoadData(fname):
     header_length = 6
     header_index = np.arange(0, header_length)    #The rows which contain heade
 
-	class ScanInfo():
-        	def __init__(self, wire_profile, x_location, total_sample_length, /
-                      _per_rev, data_state, time_stamp):   
-            self.wire_profile = wire_profile
-            self.x_location = x_location
-            self.total_sample_length = total_sample_length
-            self.pts_per_rev = pts_per_rev
-            self.data_state = data_state
-            self.time_stamp = time_stamp
-
     with open(fname,'r') as fin:
         for i, line in enumerate(fin):
             if i in header_index:
-				line_val = line.strip().split(delim)[-1]
+                line_val = line.strip().split(delim)[-1]
                 if i == 0:
                     wire_profile     = str(line_val)
                 if i == 1:
