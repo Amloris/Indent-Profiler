@@ -29,9 +29,10 @@ def LoadData(fname):
 
     #Load Header
     header_length = 6
-    header_index = np.arange(0, header_length)    #The rows which contain header
+    header_index = np.arange(0, header_length)    #The rows which contain heade
+
 	class ScanInfo():
-    	def __init__(self, wire_profile, x_location, total_sample_length,
+    	def __init__(self, wire_profile, x_location, total_sample_length, /
         	         pts_per_rev, data_state, time_stamp):
 	        self.wire_profile = wire_profile
 	        self.x_location = x_location
