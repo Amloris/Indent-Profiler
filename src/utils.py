@@ -132,5 +132,6 @@ def Bounds(array, axis='row', index=0, get_avg=False):
         return (min_val,max_val,avg_val)
 
 if __name__ == "__main__":
-    import os
-    import numpy as np
+    '''python utils.py
+       Running this command will execute the test suite.
+    '''
