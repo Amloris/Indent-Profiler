@@ -26,24 +26,27 @@ import fileIO
 import utils
 
 def main():
-    Test()
     
     #Stuff
-    import types
-    def imports():
-        print "\n"
-        for name, val in globals().items():
-            if isinstance(val, types.ModuleType):
-                print val.__name__
     imports()
+    
+    fileIO.GetDir()
+    fileIO.GetFile()    
 
 
 
 '''Functions'''
 '''-------------------------------------------------------------------------'''
-def Test():
-    import numpy as np
-    return 0
+
+def imports():
+    #This is a temporary function. Delete it after you figure our dependency
+    #handling
+    
+    import types
+    print "\n"
+    for name, val in globals().items():
+        if isinstance(val, types.ModuleType):
+            print val.__name__
 
 
 
