@@ -1,7 +1,24 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
-'''Docstring for fileIO.py'''
+"""
+Indent Profiler: fileIO.py
+-------------------------------------------------------------------------------
+Aaron Robertson
+FRA
+March 2018
+-------------------------------------------------------------------------------
+File Description:
+    Provides file handling utilities for the Indent Profiler project. Allows 
+for user specified directory and file selection, file loading and saving, and
+path building.
+
+Changelog:
+04/08/18 - Updated header, added InitFileWindow()
+-------------------------------------------------------------------------------
+"""
+
+
 
 #Libraries
 import numpy as np                 #Math
@@ -11,12 +28,17 @@ import tkFileDialog                #Input/Output
 
 
 def GetDir():
-    default_dir = ("/home/aaron/Documents/Github_Projects/Indent-Profiler/"
-                   "data/system_scans/raw/scans_wire/2018_3_23/WB")
+    '''Opens a window that allows a user to select a directory.'''
     
-    #Get Directory
+    #Set Window Attributes
+    InitFileWindow()
+    
+    #Default Directory
+    default_dir = "../data/system_scans/raw/scans_wire/2018_3_23/WB"
+    
+    #Get Specified Directory
     print "Select a data directory:"
-    dir_name = str((tkFileDialog.askdirectory(initialdir="/home/aaron", \
+    dir_name = str((tkFileDialog.askdirectory(initialdir="../",               \
                     title='Select Scan Directory')) or default_dir)
     dir_name = os.path.normpath(dir_name)
     print dir_name, '\n'
@@ -24,18 +46,50 @@ def GetDir():
     return dir_name
 
 def GetFile():
-    default_file = ("/home/aaron/Documents/Github_Projects/Indent-Profiler/"
-                    "data/system_scans/raw/scans_wire/2018_3_23/WB/WB_1.csv")
+    '''Opens a window that allows a user to select a specific file.'''
     
-    #Get File
+    #Set Window Attributes
+    InitFileWindow()
+    
+    #Default Directory
+    default_file = "../data/system_scans/raw/scans_wire/2018_3_23/WB/WB_1.csv"
+    
+    #Get Specified File
     print "Select a data file:"
-    fname = str((tkFileDialog.askopenfilename(initialdir="/home/aaron", \
-                 title = 'Select Data File', filetypes=[("CSV","*.csv"),\
+    fname = str((tkFileDialog.askopenfilename(initialdir="../",               \
+                 title = 'Select Data File', filetypes=[("CSV","*.csv"),      \
                  ("Text","*.txt")])) or default_file)
     fname = os.path.normpath(fname)
     print fname, '\n'
 
     return fname
+
+def InitFileWindow():
+    root = Tk()
+    root.withdraw()
+
+    ###########################################################################
+    # Attempting to hide hidden elements in UNIX file systems
+    # http://grokbase.com/t/python/tkinter-discuss/158pthm66v/tkinter-file-dialog-pattern-matching
+    # http://wiki.tcl.tk/1060
+    ###########################################################################
+    try:
+         # Call a dummy dialog with an impossible option to initialize the file
+         # dialog without really getting a dialog window; this will throw a
+         # TclError, so we need a try...except :
+         try:
+             root.tk.call('tk_getOpenFile', '-foobarbaz')
+         except TclError:
+             pass
+         # Now, set the magic variables accordingly
+         root.tk.call('set', '::tk::dialog::file::showHiddenBtn', '1')
+         root.tk.call('set', '::tk::dialog::file::showHiddenVar', '0')
+    except:
+         pass
+    ###########################################################################    
+        
+    return root
+    
 
 def VerifyFileNames(dir_name):
     '''Verfies that the files follow the documented naming conventions.
@@ -77,32 +131,9 @@ if __name__ == "__main__":
     '''python fileIO.py
        Running this command will execute the test suite.
     '''
-    root = Tk()
-    root.title("fileIO Test")
-    root.withdraw()
 
-    ###########################################################################
-    # Attempting to hide hidden elements in UNIX file systems
-    # http://grokbase.com/t/python/tkinter-discuss/158pthm66v/tkinter-file-dialog-pattern-matching
-    # http://wiki.tcl.tk/1060
-    ###########################################################################
-    try:
-         # Call a dummy dialog with an impossible option to initialize the file
-         # dialog without really getting a dialog window; this will throw a
-         # TclError, so we need a try...except :
-         try:
-             root.tk.call('tk_getOpenFile', '-foobarbaz')
-         except TclError:
-             pass
-         # Now, set the magic variables accordingly
-         root.tk.call('set', '::tk::dialog::file::showHiddenBtn', '1')
-         root.tk.call('set', '::tk::dialog::file::showHiddenVar', '0')
-    except:
-         pass
+    InitFileWindow()    
 
-    ###########################################################################
-    
-    
     GetDir()
     GetFile()
     
