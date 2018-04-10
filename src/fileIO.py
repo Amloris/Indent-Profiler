@@ -16,7 +16,8 @@ path building.
 Changelog:
 04/05/18 - Updated header, added InitFileWindow(), changed deault file paths.
 04/06/18 - Improved function docstrings. Added LoadData(), SaveData(), 
-           LoadSlicedData(), and HeaderInfo class.
+           LoadSplicedData(), and HeaderInfo class.
+04/10/18 - Added VerifyFileNames().
 -------------------------------------------------------------------------------
 """
 
@@ -115,7 +116,7 @@ def LoadData(fname, verify=True):
     fname : str
         The path to the file. The extension must be .txt or .csv to be loaded    
     verify : bool, optional
-        If True, data integrity will be checked [default].
+        If True, data integrity will be checked. [Default]
     
     Outputs
     -------
@@ -204,26 +205,30 @@ class HeaderInfo():
 '''Misc'''
 '''-------------------------------------------------------------------------'''
 
-def VerifyFileNames(dir_name):
-    '''Verfies that the files follow the documented naming conventions.
+def VerifyFileNames(dname, quiet=False):
+    '''
+    Verifies that the files follow the documented naming conventions.
     
-       Input:
-           dir_name = The absolute path to the directory [str]
+    Inputs
+    ------
+    dir_name : str
+        The absolute path to the directory.
+    quiet : bool, optional
+        If False, all loading dialogue and errors will be displayed. [Default]
+        If True, only critical errors will be displayed.
     '''
     
     #Get Parent Directory
-    dir_parent = os.path.basename(dir_name)
+    dir_parent = os.path.basename(dname)
     
     #Check Naming and Extensions
-    print "Verifying Files: "
-    
-    file_list = os.listdir(dir_name)       #Files contained in the directory
+    if not quiet: print "Verifying Files: "   
+    file_list = os.listdir(dname)       #Files contained in the directory
     if len(file_list) == 0:
         print "ERROR: No Files in Selected Directory"
-        return 1
+        sys.exit("TERMINATE:VERIFY_FILE_NAMES:NO_FILES")
     
-    flag = 0
-    success = 0
+    flag, success = 0, 0
     for i in range(1,len(file_list)+1):
         check_fname = dir_parent+'_'+str(i)    #Expected file w/o extension
         if ((check_fname+'.csv') in file_list) or ((check_fname+'.txt') in file_list):
@@ -233,23 +238,22 @@ def VerifyFileNames(dir_name):
             flag = 1
     
     if flag == 1:
-        print "Invalid or Missing Files. Check Documentation."
-        return 1
+        print "ERROR: Invalid or Missing Files. Check Documentation."
+        sys.exit("TERMINATE:VERIFY_FILE_NAMES:INVALID_FILE_NAMES")
     else:
-        print "Passed (%i)" %success
+        if not quiet: print "Passed (%i)\n" %success
         return 0
 
 
 if __name__ == "__main__":
     '''python fileIO.py
        Running this command will execute the test suite.
-    '''
+    '''   
 
-    InitFileWindow()    
-
-    GetDir()
-    temp = GetFile()
+    dir_temp = GetDir()
+    VerifyFileNames(dir_temp)
     
-    LoadData(temp)
+    file_temp = GetFile()
+    LoadData(file_temp)
     
     #root.mainloop()
