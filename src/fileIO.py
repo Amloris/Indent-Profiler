@@ -122,7 +122,7 @@ def LoadData(fname, verify=True):
     -------
     header : class
         Header block data will be stored in a class for easy access.
-    data: ndarray
+    data : ndarray
         Scanner data is loaded into a [nxm] array. n = pts/rev, m = 800
         
     Notes
@@ -208,6 +208,7 @@ class HeaderInfo():
 def VerifyFileNames(dname, quiet=False):
     '''
     Verifies that the files follow the documented naming conventions.
+    Used to check raw data directories that will be processed.
     
     Inputs
     ------
