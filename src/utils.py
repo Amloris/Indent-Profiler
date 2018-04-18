@@ -34,6 +34,17 @@ import collections               #Named Tuples
 
 '''Outlier Detection'''
 '''-------------------------------------------------------------------------'''
+def CoarseOutlierRemoval():
+    '''
+    Uses calibrated size constraints of the system to remove points 
+    that are physically impossible to exist.
+    '''
+    
+def MediumOutlierRemoval():
+    '''
+    Uses Sigma masking to remove points that are statistically unlikely to
+    exist
+    '''
 
 def ArrayBounds(array, axis='row', index=0, get_avg=False):
     '''
@@ -146,6 +157,7 @@ if __name__ == "__main__":
        Running this command will execute the test suite.
     '''
     
+    #Testing ArrayBounds()
     test_array = np.array([[1,2,np.nan],[4,5,6]])
     vals = ArrayBounds(test_array,axis='row',index=0,get_avg=True)
     print vals.min, vals.max, vals.avg
@@ -153,4 +165,19 @@ if __name__ == "__main__":
     
     import fileIO
     data,header = fileIO.LoadData(fileIO.GetFile())
-    GenerateHistogram(data)
+    
+    #Remove Outliers
+    data[data>20.0]  = np.nan
+    data[data<-20.0] = np.nan
+    data = data[~np.isnan(data)]
+    
+    #3-Sigma Masking
+    avg =  np.mean(data)
+    stdev = np.std(data)
+    print avg,stdev
+    data[data>(avg+3*stdev)] = np.nan
+    data = data[~np.isnan(data)]
+    data[data<(avg-3*stdev)] = np.nan
+    data = data[~np.isnan(data)]
+    
+    GenerateHistogram(data,bins=60)
